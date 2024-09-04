@@ -99,6 +99,8 @@ def forward(self, input):
 
 ## Back propagation
 
+Calcule du gardien de l'erreur, donc la dérivé de l'erreure par rapport aux paramètres b, w, k
+
 ![alt text](image-9.png)
 ![alt text](image-10.png)
 ![alt text](image-11.png)
