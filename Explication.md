@@ -270,3 +270,13 @@ Loss
 $$Loss = -\sum_{i=1}^{C} y_i \log(\^y_i) $$
 Accuracy 
 $$Accuracy = {Nombre de prédictions correctes \over Nombre total de prédictions}$$
+
+cross-entropy
+
+$$
+H(p,y) = - \sum_{i=1}^N y_i \cdot log(pi)
+$$
+
+$$
+Cross-entropy loss = - {1 \over M} \sum_{j=1}^M \sum_{i=1}^N y_{ji} \cdot log(p_{ji})
+$$
