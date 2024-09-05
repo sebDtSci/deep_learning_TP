@@ -6,7 +6,7 @@ Toutes les image et explications sont totalement reprise de:
 
 
 ## Cross-Correlation (appeler convolution par abut de language)
-![alt text](image.png)
+![alt text](img/image.png)
 
 Calacule de la matrice de sortie:
 
@@ -27,7 +27,7 @@ Où:
 - $P_w$: Padding horizontal
 
 ## Convolution
-![alt text](image-1.png)
+![alt text](img/image-1.png)
 
 $\star$ -> Cross-Correlation
 
@@ -38,19 +38,19 @@ $$ I * K = I \star rot180(K) $$
 
 ## Full correlation
 
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 # Convolutional Layer
 Image RGB -> Trois dimmenstions (n dimension = 3)
 
 Nombre de paramètre $K_h*K_w*n + 1$  le '$+1$' correspond au biais
 
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](img/image-3.png)
+![alt text](img/image-4.png)
+![alt text](img/image-5.png)
 
-![alt text](image-6.png)
-![alt text](image-8.png)
+![alt text](img/image-6.png)
+![alt text](img/image-8.png)
 
 $$Y_i = B_i + \sum_{j=1}^{n} X_j \star K_{ji} $$
 
@@ -101,9 +101,9 @@ def forward(self, input):
 
 Calcule du gardien de l'erreur, donc la dérivé de l'erreure par rapport aux paramètres b, w, k
 
-![alt text](image-9.png)
-![alt text](image-10.png)
-![alt text](image-11.png)
+![alt text](img/image-9.png)
+![alt text](img/image-10.png)
+![alt text](img/image-11.png)
 
 
 Ajout de la fonction d'activation :
@@ -119,8 +119,8 @@ $$z^{(L)} = w^{(L)}a^{(L-1)}+b^{(L)}$$
 Donc :
 $$a^{(L)} = \sigma (z^{(L)})$$
 
-![alt text](image-12.png)
-![alt text](image-13.png)
+![alt text](img/image-12.png)
+![alt text](img/image-13.png)
 
 ### Chain rule :
 Quelle est la dérivé de C par rapport à $w^L$
@@ -158,7 +158,7 @@ $${\delta C_0\over \delta a^{(L-1)}} = {\delta z^{(L)} \over \delta a^{(L-1)}} {
 .
 
 Enfin cela appliqué sur un réseau normal, avec de multiple neuronnes :
-![alt text](image-14.png)
+![alt text](img/image-14.png)
 
 ### Backward bias
 $${\delta C_0\over \delta b^{(L)}} = {\delta z^{(L)} \over \delta b^{(L)}} {\delta a^{(L)} \over \delta z^{(L)}} {\delta C_0\over \delta a^{(L)}}$$
