@@ -154,7 +154,7 @@ $$a^{(L)} = \sigma (z^{(L)})$$
 Quelle est la dérivé de C par rapport à $w^L$
 
 $${\delta C_0\over \delta w^{(L)}} = {\delta z^{(L)} \over \delta w^{(L)}} {\delta a^{(L)} \over \delta z^{(L)}} {\delta C_0\over \delta a^{(L)}}$$
-.
+
 
 where : 
 
