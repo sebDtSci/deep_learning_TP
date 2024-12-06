@@ -6,6 +6,7 @@ Toutes les image et explications sont totalement reprise de:
 
 
 ## Cross-Correlation (appeler convolution par abut de language)
+
 ![alt text](img/image.png)
 
 Calacule de la matrice de sortie:
@@ -21,16 +22,25 @@ $$ O_h = \frac{I_h - K_h + 2P_h}{S_h} + 1 $$
 $$ O_w = \frac{I_w - K_w + 2P_w}{S_w} + 1 $$
 
 Où: 
+
 - $I_h$: Hauteur de l'entrée
+  
 - $I_w$: Largeur de l'entrée
+  
 - $K_h$: Hauteur du filtre (kernel)
+  
 - $K_w$: Largeur du filtre (kernel)
+  
 - $S_h$: Stride vertical
+  
 - $S_w$: Stride horizontal
+  
 - $P_h$: Padding vertical
+  
 - $P_w$: Padding horizontal
 
 ## Convolution
+
 ![alt text](img/image-1.png)
 
 $\star$ -> Cross-Correlation
@@ -38,6 +48,7 @@ $\star$ -> Cross-Correlation
 $*$ -> Convolution
 
 Donc la convolution est :
+
 $$ I * K = I \star rot180(K) $$
 
 ## Full correlation
@@ -70,11 +81,13 @@ class Layer:
     def backward(self, output_gradient, learning_rate):
         pass
 ```
+
 ```Python
 import numpy as np
 from scipy import signal
 from layer import Layer
 ```
+
 ```Python
 class Convolutional(Layer):
     def __init__(self, input_shape, kernel_size, depth):
@@ -87,6 +100,7 @@ class Convolutional(Layer):
         self.kernels = np.random.randn(*self.kernels_shape)
         self.biases = np.random.randn(*self.output_shape)
 ```
+
 ## Forward 
 
 $$Y_i = B_i + \sum_{j=1}^{n} X_j \star K_{ji} $$
@@ -132,27 +146,32 @@ $$a^{(L)} = \sigma (z^{(L)})$$
 ![alt text](img/image-13.png)
 
 ### Chain rule :
+
 Quelle est la dérivé de C par rapport à $w^L$
 
 $${\delta C_0\over \delta w^{(L)}} = {\delta z^{(L)} \over \delta w^{(L)}} {\delta a^{(L)} \over \delta z^{(L)}} {\delta C_0\over \delta a^{(L)}}$$
 .
 
 where : 
+
 $$C_0 = (a^{(L)}-y)^2$$  
 
 $${\delta C_0\over \delta a^{(L)}} = 2(a^{(L)}-y)$$
 
 where : 
+
 $$a^{(L)} = \sigma (z^{(L)})$$ 
 
 $${\delta a^{(L)} \over \delta z^{(L)}} = \sigma' (z^{(L)})$$
 
 where : 
+
 $$z^{(L)} = w^{(L)}a^{(L-1)}+b^{(L)}$$  
 
 $${\delta z^{(L)} \over \delta w^{(L)}} = a^{(L-1)}$$
 
 Soit:
+
 $${\delta C_0\over \delta w^{(L)}} =a^{(L-1)} \sigma' (z^{(L)}) 2(a^{(L)}-y)$$
 
 **Ca, c'est pour les poids !** Maintenant les Biais :
@@ -173,12 +192,15 @@ Enfin cela appliqué sur un réseau normal, avec de multiple neuronnes :
 ![alt text](img/image-14.png)
 
 ### Backward bias
+
 $${\delta C_0\over \delta b^{(L)}} = {\delta z^{(L)} \over \delta b^{(L)}} {\delta a^{(L)} \over \delta z^{(L)}} {\delta C_0\over \delta a^{(L)}}$$
 
 ### Backward kernel
+
 $${\delta C_0\over \delta w_{jk}^{(L)}} = {\delta z_j^{(L)} \over \delta w_{jk}^{(L)}} {\delta a_j^{(L)} \over \delta z_j^{(L)}} {\delta C_0\over \delta a_j^{(L)}}$$
 
 ### Backward Input
+
 $${\delta C_0\over \delta a_k^{(L-1)}} = \sum_{j=0}^{n_{L}-1} {\delta z_j^{(L)} \over \delta a_k^{(L-1)}} {\delta a_j^{(L)} \over \delta z_j^{(L)}} {\delta C_0\over \delta a_j^{(L)}}$$
 
 ##################################
@@ -199,9 +221,13 @@ Y_i = B_i + \sum_{j=1}^{n} X_j \star K_{ji}
 $$
 
 - **$ Y_i $** : La sortie de la couche convolutive.
+  
 - **$ B_i $** : Le biais ajouté à chaque carte de caractéristiques.
+  
 - **$ X_j $** : Le j-ème canal de l'image d'entrée.
+  
 - **$ K_{ji} $** : Le j-ème filtre du i-ème kernel.
+  
 - **$ \star $** : La cross-correlation (ou convolution selon le contexte).
 
 ### 3. Propagation arrière (Backward pass)
@@ -218,8 +244,11 @@ $$
 $$
 
 - **$ \delta^{(L)} $** : Le gradient de l'erreur par rapport à la sortie de la couche.
+  
 - **$ a^{(L)} $** : La sortie actuelle après application de la fonction d'activation.
+  
 - **$ y $** : La valeur cible (label).
+  
 - **$ \sigma'(z^{(L)}) $** : La dérivée de la fonction d'activation.
 
 #### b. Calcul du gradient des biais
@@ -241,6 +270,7 @@ $$
 $$
 
 - **$ a^{(L-1)} $** : L'activation de la couche précédente.
+  
 - **$ \delta^{(L)} $** : Le gradient de l'erreur par rapport à la sortie.
 
 #### d. Propagation des gradients vers l'entrée précédente
@@ -284,6 +314,7 @@ Loss
 $$Loss = -\sum_{i=1}^{C} y_i \log(\^y_i) $$
 
 Accuracy 
+
 $$Accuracy = {Nombre de prédictions correctes \over Nombre total de prédictions}$$
 
 cross-entropy
