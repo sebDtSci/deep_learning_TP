@@ -58,7 +58,11 @@ $$ I * K = I \star rot180(K) $$
 # Convolutional Layer
 Image RGB -> Trois dimmenstions (n dimension = 3)
 
-Nombre de paramètre $ K_h*K_w*n + 1 $  le $+1$ correspond au biais
+Nombre de paramètre :
+
+$$K_h*K_w*n + 1$$  
+
+$+1$ -> correspond au biais
 
 ![alt text](img/image-3.png)
 ![alt text](img/image-4.png)
