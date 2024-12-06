@@ -11,9 +11,13 @@ Toutes les image et explications sont totalement reprise de:
 Calacule de la matrice de sortie:
 
 La version Classique:
+
 $$O = I-K + 1$$
+
 La version avancé prenant en compte le Stride et Padding
+
 $$ O_h = \frac{I_h - K_h + 2P_h}{S_h} + 1 $$
+
 $$ O_w = \frac{I_w - K_w + 2P_w}{S_w} + 1 $$
 
 Où: 
@@ -107,16 +111,21 @@ Calcule du gardien de l'erreur, donc la dérivé de l'erreure par rapport aux pa
 
 
 Ajout de la fonction d'activation :
+
 $$\sigma = ReLU$$
+
 $$a^{(L)} = \sigma (w^{(L)}a^{(L-1)}+b^{(L)})$$
 
 On retrouve notre formule :
+
 $$\^Y = \sigma(B + X \star K)$$
 
 On va donner un nom à somme pondéré :
+
 $$z^{(L)} = w^{(L)}a^{(L-1)}+b^{(L)}$$
 
 Donc :
+
 $$a^{(L)} = \sigma (z^{(L)})$$
 
 ![alt text](img/image-12.png)
@@ -130,14 +139,17 @@ $${\delta C_0\over \delta w^{(L)}} = {\delta z^{(L)} \over \delta w^{(L)}} {\del
 
 where : 
 $$C_0 = (a^{(L)}-y)^2$$  
+
 $${\delta C_0\over \delta a^{(L)}} = 2(a^{(L)}-y)$$
 
 where : 
 $$a^{(L)} = \sigma (z^{(L)})$$ 
+
 $${\delta a^{(L)} \over \delta z^{(L)}} = \sigma' (z^{(L)})$$
 
 where : 
 $$z^{(L)} = w^{(L)}a^{(L-1)}+b^{(L)}$$  
+
 $${\delta z^{(L)} \over \delta w^{(L)}} = a^{(L-1)}$$
 
 Soit:
@@ -162,8 +174,10 @@ Enfin cela appliqué sur un réseau normal, avec de multiple neuronnes :
 
 ### Backward bias
 $${\delta C_0\over \delta b^{(L)}} = {\delta z^{(L)} \over \delta b^{(L)}} {\delta a^{(L)} \over \delta z^{(L)}} {\delta C_0\over \delta a^{(L)}}$$
+
 ### Backward kernel
 $${\delta C_0\over \delta w_{jk}^{(L)}} = {\delta z_j^{(L)} \over \delta w_{jk}^{(L)}} {\delta a_j^{(L)} \over \delta z_j^{(L)}} {\delta C_0\over \delta a_j^{(L)}}$$
+
 ### Backward Input
 $${\delta C_0\over \delta a_k^{(L-1)}} = \sum_{j=0}^{n_{L}-1} {\delta z_j^{(L)} \over \delta a_k^{(L-1)}} {\delta a_j^{(L)} \over \delta z_j^{(L)}} {\delta C_0\over \delta a_j^{(L)}}$$
 
@@ -268,6 +282,7 @@ Image 24 Mega pixel -> 72 milliards de paramètres dans un dense !
 
 Loss
 $$Loss = -\sum_{i=1}^{C} y_i \log(\^y_i) $$
+
 Accuracy 
 $$Accuracy = {Nombre de prédictions correctes \over Nombre total de prédictions}$$
 
